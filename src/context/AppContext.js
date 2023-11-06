@@ -11,6 +11,15 @@ export const AppReducer = (state, action) => {
                     return previousExp + currentExp.cost
                 },0
             );
+
+            if (!parseInt(action.payload.cost))  {
+                action.type = "DONE";
+                alert("Enter number only");
+                return {
+                    ...state,
+                }
+            }
+
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
             if(total_budget <= state.budget) {
